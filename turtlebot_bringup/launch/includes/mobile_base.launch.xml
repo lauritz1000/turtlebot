@@ -10,9 +10,13 @@
   <!-- mobile base -->
   <arg name="base"/>
   <arg name="serialport"/>
+  <arg name="odom_frame" default="odom" />
+  <arg name="base_frame" default="base_footprint" />
   <include file="$(find turtlebot_bringup)/launch/includes/$(arg base)/mobile_base.launch.xml">
     <arg name="serialport" value="$(arg serialport)"/>
     <arg name="manager" value="mobile_base_nodelet_manager"/>
+    <arg name="odom_frame" value="$(arg odom_frame)" />
+    <arg name="base_frame" value="$(arg base_frame)" />
   </include>
   
   <!-- velocity commands multiplexer -->

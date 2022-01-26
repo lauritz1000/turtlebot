@@ -4,10 +4,14 @@
 <launch>
   <arg name="serialport"/> <!-- TODO: use the serialport parameter to set the serial port of kobuki -->
   <arg name="manager"/>
+  <arg name="odom_frame" default="odom" />
+  <arg name="base_frame" default="base_footprint" />
   
   <node pkg="nodelet" type="nodelet" name="mobile_base" args="load kobuki_node/KobukiNodelet $(arg manager)">
     <rosparam file="$(find kobuki_node)/param/base.yaml" command="load"/>
     <param name="device_port" value="$(arg serialport)" />
+    <param name="odom_frame" value="$(arg odom_frame)" />
+    <param name="base_frame" value="$(arg base_frame)" />
 
     <remap from="mobile_base/odom" to="odom"/>
     <!-- Don't do this - force applications to use a velocity mux for redirection  
